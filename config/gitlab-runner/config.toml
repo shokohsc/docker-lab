@@ -11,7 +11,7 @@ check_interval = 0
   [runners.docker]
     tls_verify = false
     image = "docker:latest"
-    network_mode = "connected"
+    network_mode = "dockerlab_exposed"
     extra_hosts = ["gitlab:172.16.0.63", "rancher:172.16.0.64"]
     privileged = true
     disable_cache = false
