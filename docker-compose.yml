@@ -163,8 +163,8 @@ services:
             - cadvisor
         labels:
             - "traefik.enable=true"
-            - "traefik.frontend.rule=Host:grafana.shokohsc"
-            - "traefik.docker.network=seedbox_exposed"
+            - "traefik.frontend.rule=Host:grafana.gamestream.biz"
+            - "traefik.docker.network=connected"
             - "traefik.port=3000"
 
     prometheus: # Database, grafana requirement
