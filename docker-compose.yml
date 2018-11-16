@@ -139,9 +139,6 @@ services:
             BASIC_AUTH_PASSWORD: ${BASIC_AUTH_PASSWORD}
             ENABLE_DELETE_IMAGES: ${ENABLE_DELETE_IMAGES}
             PUBLIC_REGISTRY_URL: ${PUBLIC_REGISTRY_URL}
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock
-            - ./data/registry:/var/lib/registry
         networks:
             - exposed
         depends_on:
