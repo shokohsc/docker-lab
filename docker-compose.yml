@@ -54,6 +54,8 @@ services:
         networks:
             exposed:
                 ipv4_address: 172.16.0.63
+        depends_on:
+            - traefik
         labels:
             - "traefik.enable=true"
             - "traefik.port=80"
@@ -68,6 +70,10 @@ services:
             - ./config/gitlab-runner/config.toml:/etc/gitlab-runner/config.toml
         networks:
             - exposed
+        depends_on:
+            - gitlab
+            - rancher
+            - registry
         labels:
             - "traefik.enable=false"
 
@@ -80,6 +86,8 @@ services:
             - ./data/portainer:/data
         networks:
             - exposed
+        depends_on:
+            - traefik
         labels:
             - "traefik.enable=true"
             - "traefik.port=9000"
@@ -95,6 +103,8 @@ services:
         networks:
             exposed:
                 ipv4_address: 172.16.0.64
+        depends_on:
+            - traefik
         labels:
             - "traefik.enable=true"
             - "traefik.port=8080"
@@ -111,6 +121,8 @@ services:
             - ./data/registry:/var/lib/registry
         networks:
             - exposed
+        depends_on:
+            - traefik
         labels:
             - "traefik.enable=true"
             - "traefik.port=5000"
@@ -132,6 +144,8 @@ services:
             - ./data/registry:/var/lib/registry
         networks:
             - exposed
+        depends_on:
+            - registry
         labels:
             - "traefik.enable=true"
             - "traefik.port=8080"
