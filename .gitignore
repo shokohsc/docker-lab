@@ -1,2 +1,4 @@
 .git
 .env
+
+config/traefik/acme.json
