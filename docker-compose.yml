@@ -44,7 +44,7 @@ services:
         image: gitlab/gitlab-ce
         restart: ${RESTART_MODE}
         ports:
-            - 9022:22
+            - "9022:22"
         volumes:
             - ./config/gitlab:/etc/gitlab
             - ./logs/gitlab:/var/log/gitlab
