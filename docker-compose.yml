@@ -3,7 +3,6 @@ version: '2'
 networks:
 
     exposed:
-        alias: exposed
         driver: bridge
         ipam:
             driver: default
@@ -13,7 +12,6 @@ networks:
               ip_range: 172.16.0.0/26 # 172.16.0.1 - 172.16.0.62
 
     hidden:
-        alias: hidden
         internal: true
 
 volumes:
@@ -55,7 +53,7 @@ services:
             GITLAB_OMNIBUS_CONFIG: ${GITLAB_OMNIBUS_CONFIG}
         networks:
             exposed:
-                ipv4: 172.16.0.63
+                ipv4_address: 172.16.0.63
         labels:
             - "traefik.enable=true"
             - "traefik.port=80"
@@ -96,7 +94,7 @@ services:
             - ./data/rancher:/var/lib/mysql
         networks:
             exposed:
-                ipv4: 172.16.0.64
+                ipv4_address: 172.16.0.64
         labels:
             - "traefik.enable=true"
             - "traefik.port=8080"
