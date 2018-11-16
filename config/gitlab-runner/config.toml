@@ -1,0 +1,21 @@
+concurrent = 4
+check_interval = 0
+
+[[runners]]
+  name = "gamestream"
+  url = "http://gitlab/"
+  token = "58e07015c9b9b946c7c3b1bedbadbb"
+  executor = "docker"
+  environment = ["COMPOSER_CACHE_DIR=/cache-ci/composer", "RANCHER_ACCESS_KEY=8AAEA834ED29E235DA4B", "RANCHER_SECRET_KEY=oS1Ln2K38ARhLi1gtJEYAn1NaZhyUgPGKW3p9ytU", "RANCHER_URL=http://rancher:8080"]
+  clone_url = "http://gitlab/"
+  [runners.docker]
+    tls_verify = false
+    image = "docker:latest"
+    network_mode = "connected"
+    extra_hosts = ["gitlab:172.16.0.63", "rancher:172.16.0.64"]
+    privileged = true
+    disable_cache = false
+    volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
+    shm_size = 0
+    cache_dir = "cache"
+  [runners.cache]

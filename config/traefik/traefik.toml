@@ -1,0 +1,42 @@
+debug = true
+
+logLevel = "ERROR"
+defaultEntryPoints = ["https","http"]
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+   [entryPoints.http.redirect]
+   entryPoint = "https"
+ [entryPoints.https]
+ address = ":443"
+ [entryPoints.https.tls]
+
+[retry]
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "gamestream.biz"
+watch = true
+exposedByDefault = false
+
+[acme]
+email = "dimitri@gamestream.biz"
+storage = "/etc/traefik/acme/acme.json"
+entryPoint = "https"
+#caServer = "https://acme-staging-v02.api.letsencrypt.org/directory"
+onHostRule = true
+
+[acme.httpChallenge]
+entryPoint = "http"
+
+#[acme.dnsChallenge]
+#  provider = "ovh"
+#  delayBeforeCheck = 0
+#  [[acme.domains]]
+#    main = "*.gamestream.biz"
+
+[entryPoints.traefik]
+address = ":8080"
+  [entryPoints.traefik.auth.basic]
+  users = ["admin:$apr1$doHZ44/n$PvyPdv4QMmVVrUZ5RH6040"]
