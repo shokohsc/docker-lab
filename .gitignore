@@ -2,3 +2,6 @@
 .env
 
 config/traefik/acme.json
+config/gitlab
+data
+logs

@@ -6,13 +6,13 @@ check_interval = 0
   url = "http://gitlab/"
   token = "58e07015c9b9b946c7c3b1bedbadbb"
   executor = "docker"
-  environment = ["COMPOSER_CACHE_DIR=/cache-ci/composer", "RANCHER_ACCESS_KEY=8AAEA834ED29E235DA4B", "RANCHER_SECRET_KEY=oS1Ln2K38ARhLi1gtJEYAn1NaZhyUgPGKW3p9ytU", "RANCHER_URL=http://rancher:8080"]
+  environment = ["COMPOSER_CACHE_DIR=/cache-ci/composer"]
   clone_url = "http://gitlab/"
   [runners.docker]
     tls_verify = false
     image = "docker:latest"
     #network_mode = "dockerlab_exposed"
-    extra_hosts = ["gitlab:172.17.0.5", "rancher:172.17.0.3"]
+    extra_hosts = ["gitlab:172.17.0.2", "rancher:172.17.0.3"]
     privileged = true
     disable_cache = false
     volumes = ["/var/run/docker.sock:/var/run/docker.sock", "/cache"]
