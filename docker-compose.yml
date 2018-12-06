@@ -54,8 +54,6 @@ services:
         networks:
             exposed:
                 ipv4_address: 172.16.0.63
-            default:
-                ipv4_address: 172.17.0.70
         depends_on:
             - traefik
         labels:
@@ -106,8 +104,6 @@ services:
         networks:
             exposed:
                 ipv4_address: 172.16.0.64
-            default:
-                ipv4_address: 172.17.0.71
         depends_on:
             - traefik
         labels:
