@@ -2,15 +2,6 @@ version: '2'
 
 networks:
 
-    default:
-        driver: bridge
-        ipam:
-            driver: default
-            config: # http://www.subnet-calculator.com/subnet.php?net_class=B
-            - subnet: 172.17.0.0/25 # 172.17.0.1 - 172.17.0.126
-              gateway: 172.17.0.126
-              ip_range: 172.17.0.0/26 # 172.17.0.1 - 172.17.0.62
-
     exposed:
         driver: bridge
         ipam:
