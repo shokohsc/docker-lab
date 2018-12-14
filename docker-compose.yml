@@ -244,13 +244,3 @@ services:
         restart: ${RESTART_MODE}
         networks:
             - hidden
-
-    watchtower: # Watch tower keeps images up to date
-        image: v2tec/watchtower
-        container_name: watchtower
-        restart: ${RESTART_MODE}
-        command: --schedule "0 4 * * *"
-        networks:
-            - hidden
-        volumes:
-            - /var/run/docker.sock:/var/run/docker.sock

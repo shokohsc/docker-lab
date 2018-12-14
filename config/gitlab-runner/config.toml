@@ -6,7 +6,7 @@ check_interval = 0
   url = "http://gitlab/"
   token = "58e07015c9b9b946c7c3b1bedbadbb"
   executor = "docker"
-  environment = ["COMPOSER_CACHE_DIR=/cache-ci/composer"]
+  environment = ["COMPOSER_CACHE_DIR=/cache-ci/composer", "RANCHER_ACCESS_KEY=E30C96E032B1C20E1113", "RANCHER_SECRET_KEY=PSH4qWtap9FtUdEuF8SmzSVfAnD721fZAfM3nXbd", "RANCHER_URL=http://rancher:8080"]
   clone_url = "http://gitlab/"
   [runners.docker]
     tls_verify = false
