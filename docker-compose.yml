@@ -244,3 +244,67 @@ services:
         restart: ${RESTART_MODE}
         networks:
             - hidden
+
+    rocketchat: # Rocketchat
+        image: rocket.chat
+        container_name: rocketchat
+        restart: ${RESTART_MODE}
+        environment:
+            ROOT_URL: ${RC_ROOT_URL}
+            MONGO_URL: ${MONGO_URL}/rocketchat
+        networks:
+            - exposed
+            - hidden
+        depends_on:
+            - traefik
+            - mongo
+        labels:
+            - "traefik.enable=true"
+            - "traefik.frontend.rule=Host:rocketchat.gamestream.biz"
+            - "traefik.port=3000"
+
+    mongo: # Rocketchat requirement
+        image: mongo
+        container_name: mongo
+        restart: ${RESTART_MODE}
+        volumes:
+            - ./config/mongo:/data/db
+        networks:
+            - hidden
+
+    heimdall: # Heimdall
+        image: linuxserver/heimdall
+        container_name: heimdall
+        restart: ${RESTART_MODE}
+        environment:
+            PGID: ${PGID}
+            PUID: ${PUID}
+            TZ: ${TIMEZONE}
+        volumes:
+            - ./config/heimdall:/config
+        networks:
+            - exposed
+        depends_on:
+            - traefik
+        labels:
+            - "traefik.enable=true"
+            - "traefik.frontend.rule=Host:links.gamestream.biz"
+            - "traefik.port=80"
+
+    wekan: # Wekan
+        image: quay.io/wekan/wekan
+        container_name: wekan
+        restart: ${RESTART_MODE}
+        environment:
+            ROOT_URL: ${WK_ROOT_URL}
+            MONGO_URL: ${MONGO_URL}/wekan
+        networks:
+            - exposed
+            - hidden
+        depends_on:
+            - traefik
+            - mongo
+        labels:
+            - "traefik.enable=true"
+            - "traefik.frontend.rule=Host:wekan.gamestream.biz"
+            - "traefik.port=8080"
