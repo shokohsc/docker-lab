@@ -3,5 +3,7 @@
 
 config/traefik/acme.json
 config/gitlab
+config/heimdall
+config/mongo
 data
 logs
