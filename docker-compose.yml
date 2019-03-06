@@ -308,3 +308,21 @@ services:
             - "traefik.enable=true"
             - "traefik.frontend.rule=Host:wekan.gamestream.biz"
             - "traefik.port=8080"
+
+    uptime: # Uptime
+        image: usman/docker-uptime
+        container_name: uptime
+        restart: ${RESTART_MODE}
+        environment:
+            NODE_ENV: production
+        volumes:
+            - ./config/uptime/default.yaml:/tmp/uptime/config/default.yaml
+        networks:
+            - exposed
+            - hidden
+        depends_on:
+            - traefik
+        labels:
+            - "traefik.enable=true"
+            - "traefik.frontend.rule=Host:uptime.gamestream.biz"
+            - "traefik.port=8082"
